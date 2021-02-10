@@ -8,3 +8,9 @@ https://github.com/coverallsapp/orb/issues/10
 https://circleci.com/docs/2.0/orb-author-validate-publish/
 
 https://github.com/coverallsapp/orb
+
+## Release
+
+    circleci orb validate orb.yml
+    
+    circleci orb publish orb.yml solven/coveralls@0.0.2
