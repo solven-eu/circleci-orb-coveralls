@@ -125,6 +125,10 @@ commands:
         description: Set to true for verbose output from the Coveralls API push.
         type: boolean
         default: false
+      cd:
+        description: Used to change the context in which coveralls is executed. Useful if node folder is in a sub-folder. Especially useful if coveralls does '"source_files":[]'
+        type: string
+        default: '.'
     steps:
       - run:
           name: Upload Coverage Result To Coveralls
@@ -149,6 +153,12 @@ commands:
             if [ ! -r << parameters.path_to_lcov >> ]; then
               echo "Please specify a valid 'path_to_lcov' parameter."
               exit 1
+            fi
+            # Change the folder context
+            if << parameters.cd >>; then
+              pwd
+              cd << parameters.cd >>
+              pwd
             fi
             if << parameters.verbose >>; then
               cat << parameters.path_to_lcov >> | coveralls --verbose
