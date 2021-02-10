@@ -155,11 +155,9 @@ commands:
               exit 1
             fi
             # Change the folder context
-            if << parameters.cd >>; then
-              pwd
-              cd << parameters.cd >>
-              pwd
-            fi
+            pwd
+            cd << parameters.cd >>
+            pwd
             if << parameters.verbose >>; then
               cat << parameters.path_to_lcov >> | coveralls --verbose
             else
